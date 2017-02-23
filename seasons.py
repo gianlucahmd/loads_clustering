@@ -1,0 +1,8 @@
+spring_start = "2004-03-01" 
+spring_end = "2004-05-31"
+summer_start = "2004-06-01" 
+summer_end = "2004-08-31"
+autumn_start = "2004-09-01" 
+autumn_end = "2004-11-30"
+winter_start = "2004-12-01" 
+winter_end = "2004-02-28"

@@ -1,5 +1,6 @@
 import pandas as pd
 import datetime
+
 from pandas.tseries.offsets import CDay
 from pandas.tseries.holiday import Holiday, USFederalHolidayCalendar, USColumbusDay, USMemorialDay, AbstractHolidayCalendar
 
@@ -15,13 +16,17 @@ WorkCalendar.start_date = datetime.date(2004,12, 31)
     
 cal = WorkCalendar()
 
-def get_workdays(df, start_date, end_date):
-    return pd.DatetimeIndex(start = start_date, end = end_date, freq = CDay(calendar = cal))
 
-def get_all_days(df, start_date, end_date):
-    return pd.date_range(start_date,end_date)
+def get_workdays(start_date, end_date):
+    days = pd.DatetimeIndex(start = start_date, end = end_date, freq = CDay(calendar = cal))
+    return list(days.strftime('%Y-%m-%d'))
 
-def get_not_workdays(df, start_date, end_date):
-    workdays = get_workdays(df, start_date, end_date)
-    all_days = get_all_days(df, start_date, end_date)
-    return all_days - workdays    
+def get_all_days(start_date, end_date):
+    days = pd.date_range(start_date,end_date)
+    return list(days.strftime('%Y-%m-%d'))
+
+def get_not_workdays(start_date, end_date):
+    workdays = pd.DatetimeIndex(start = start_date, end = end_date, freq = CDay(calendar = cal))
+    all_days = pd.date_range(start_date,end_date)
+    days = all_days - workdays    
+    return list(days.strftime('%Y-%m-%d'))

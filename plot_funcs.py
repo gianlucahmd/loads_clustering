@@ -7,23 +7,26 @@ def plot_range(folder, file_input, start_date, end_date, **kwargs):
     print(file_input)
     df = make_df(folder + file_input)
     
-    workdays = get_workdays(df, start_date, end_date)
-    all_days = get_all_days(df, start_date, end_date)
-    not_workdays = get_not_workdays(df, start_date, end_date)
+    workdays = get_workdays(start_date, end_date)
+    all_days = get_all_days(start_date, end_date)
+    not_workdays = get_not_workdays(start_date, end_date)
     
     for day in all_days:
         plt.subplot(131)
-        plt.plot(df[str(day.date())].index.hour,
-                 df[str(day.date())]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
+        plt.plot(df[day].index.hour,
+                 df[day]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
+    
     for day in workdays:
         plt.subplot(132)
-        plt.plot(df[str(day.date())].index.hour,
-                 df[str(day.date())]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
+        plt.plot(df[day].index.hour,
+                 df[day]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
+    
     plt.title(file_input + " (all, working, weekends)", fontsize = 30)
+    
     for day in not_workdays:
         plt.subplot(133)
-        plt.plot(df[str(day.date())].index.hour,
-                 df[str(day.date())]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
+        plt.plot(df[day].index.hour,
+                 df[day]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
         
     if "output_folder" in kwargs: 
         save_path = folder + kwargs["output_folder"]

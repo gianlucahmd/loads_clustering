@@ -6,8 +6,8 @@ def make_df(path):
     df = pd.read_csv(path)
     
     #add year and change midnight from 24 to 00 as pandas wants
-    df["Date/Time"] = "2004/" + df["Date/Time"].str.replace("24:","00:")
-    df["Date/Time"] = pd.to_datetime(df["Date/Time"], format ="%Y/ %m/%d  %H:%M:%S")
+    df["Date/Time"] = "2004/" + df["Date/Time"].str.replace("24:","00:").str.replace(" ","")
+    df["Date/Time"] = pd.to_datetime(df["Date/Time"], format ="%Y/%m/%d%H:%M:%S")
     
     #remove only datapoint of 2005 and use it to fill missing datapoint of 2004-1-1 at midnight
     df.set_index("Date/Time", inplace=True)
@@ -34,4 +34,5 @@ def make_df(path):
     # can see that on weekends energy demand is lower, as well as on public holidays
     # (check Martin Luther king day on January 19)
     df = df.shift(3 * 24)
-    return df.dropna()  
+
+    return df.dropna(axis = 1, how = "all").dropna(how = "all")  

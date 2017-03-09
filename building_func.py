@@ -5,4 +5,4 @@ def get_building_state(filename):
     return filename.split("USA_")[1].split("_")[0]
 
 def get_building_city(filename):
-    return filename.split("_")[-1].split(".")[0]
+    return filename.split(get_building_state(filename))[1][1:-4]

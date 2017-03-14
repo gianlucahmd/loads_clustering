@@ -1,0 +1,35 @@
+================================
+CLUSTER 0
+total elements: 3042
+n  Stand-aloneRetailNew = 936 out of 936
+n  StripMallNew = 936 out of 936
+n  SecondarySchoolNew = 923 out of 936
+n  PrimarySchoolNew = 235 out of 936
+n  MediumOfficeNew = 4 out of 936
+n  LargeOfficeNew = 8 out of 936
+================================
+CLUSTER 1
+total elements: 5382
+n  LargeOfficeNew = 928 out of 936
+n  MediumOfficeNew = 932 out of 936
+n  OutPatientNew = 936 out of 936
+n  PrimarySchoolNew = 701 out of 936
+n  SecondarySchoolNew = 13 out of 936
+n  SmallOfficeNew = 936 out of 936
+n  SuperMarketNew = 936 out of 936
+================================
+CLUSTER 2
+total elements: 2808
+n  LargeHotelNew = 936 out of 936
+n  MidriseApartmentNew = 936 out of 936
+n  SmallHotelNew = 936 out of 936
+================================
+CLUSTER 3
+total elements: 2808
+n  FullServiceRestaurantNew = 936 out of 936
+n  HospitalNew = 936 out of 936
+n  QuickServiceRestaurantNew = 936 out of 936
+================================
+CLUSTER 4
+total elements: 936
+n  WarehouseNew = 936 out of 936

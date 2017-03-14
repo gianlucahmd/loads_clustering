@@ -13,6 +13,9 @@ def make_building_feats(file, season = "", days = "all"):
     elif "Electricity:Facility [J](Hourly)" in building_model.columns:
         electricity_cons = building_model["Electricity:Facility [J](Hourly)"]
         measure = "J"
+    elif "Electricity:Facility [kWh](Hourly)" in building_model.columns:
+        electricity_cons = building_model["Electricity:Facility [kWh](Hourly)"]
+        measure = "kWh"
         
     #electricity_cons_scaled = minmax_scale(np.float64(electricity_cons.values))
     electricity_cons_scaled = electricity_cons / electricity_cons.max()

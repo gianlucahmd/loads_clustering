@@ -1,6 +1,6 @@
 import pandas as pd
 from explorer import get_files, get_folders, get_subroots, count_files
-#from make_building_feats import make_building_feats
+from make_building_feats import make_building_feats
 import progressbar
 
 

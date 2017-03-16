@@ -3,9 +3,8 @@ import matplotlib.pyplot as plt
 from make_df import make_df
 from calendar_funcs import get_workdays, get_all_days, get_not_workdays
 
-def plot_range(folder, file_input, start_date, end_date, **kwargs):
-    print(file_input)
-    df = make_df(folder + file_input)
+def plot_range(path, start_date, end_date, **kwargs):
+    df = make_df(path)
     
     workdays = get_workdays(start_date, end_date)
     all_days = get_all_days(start_date, end_date)
@@ -15,19 +14,28 @@ def plot_range(folder, file_input, start_date, end_date, **kwargs):
         plt.subplot(131)
         plt.plot(df[day].index.hour,
                  df[day]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
+        plt.xlim([0, 23])
+    plt.xlabel("Hour of the day")
+    plt.ylabel("Load profile")
     
     for day in workdays:
         plt.subplot(132)
         plt.plot(df[day].index.hour,
                  df[day]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
-    
-    plt.title(file_input + " (all, working, weekends)", fontsize = 30)
+        plt.xlim([0, 23])
+        plt.xlabel("Hour of the day")
+        plt.ylabel("Load profile")
+
+    plt.title(path.split("/")[-1] + " (all, working, weekends)", fontsize = 20)
     
     for day in not_workdays:
         plt.subplot(133)
         plt.plot(df[day].index.hour,
                  df[day]['Electricity:Facility [kW](Hourly)'], color=(0,0,0,0.1))
-        
+        plt.xlim([0, 23])
+        plt.xlabel("Hour of the day")
+        plt.ylabel("Load profile")
+
     if "output_folder" in kwargs: 
         save_path = folder + kwargs["output_folder"]
         if not os.path.exists(save_path):
@@ -38,8 +46,12 @@ def plot_range(folder, file_input, start_date, end_date, **kwargs):
     
     return plt.show()
 
-def plot_day(df, days):
+def plot_day(df, days, line_color="blue"):
     for day in days:
         plt.plot(df[day].index.hour,
-                         df[day]['Electricity:Facility [kW](Hourly)'])
+                         df[day]['Electricity:Facility [kW](Hourly)'], color = line_color)
+        plt.xlim([0, 23])
+        plt.xlabel("Hour of the day")
+        plt.ylabel("Load profile")
+        
     plt.show()
